@@ -18,13 +18,14 @@ public class MemberDao {
 	// 회원가입, 회원 탈퇴, 회원리스트조회, 회원검색, 회원정보수정
 	
 	//1. 회원가입 매서드 만들기 - 반환타입없이 일단 만들어보기
-	//public void joinMember(HttpServletRequest request) { // 회원가입 매소드
-	public void joinMember(String mid, String mpw , String mname, String memail) {
+	public int joinMember(String mid, String mpw , String mname, String memail) { // 회원가입 매소드
 		
 		String sql = "INSERT INTO members(mid, mpw, mname, memail) VALUES(?,?,?,?)";
 				
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		
+		int success = 0;
 		
 		try {
 			Class.forName(driverName);
@@ -36,7 +37,7 @@ public class MemberDao {
 			pstmt.setString(3, mname);
 			pstmt.setString(4, memail);
 			
-			pstmt.executeUpdate();
+			success = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,7 +53,8 @@ public class MemberDao {
 				e2.printStackTrace();
 			}
 		}
+	
+	return success;
 	}
-	
-	
 }
+	

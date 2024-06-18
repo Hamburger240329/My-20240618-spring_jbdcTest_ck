@@ -17,5 +17,8 @@
 		<input type="submit" value="회원등록">
 		
 	</form>
+	<br>
+	<h3>${error}</h3>
+	
 </body>
 </html>
