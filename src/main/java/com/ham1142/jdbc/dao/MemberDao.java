@@ -11,7 +11,7 @@ import com.ham1142.jdbc.dto.MemberDto;
 public class MemberDao {
 
 	String driverName = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/spring-projectdb";
+	String url = "jdbc:mysql://localhost:3306/spring_projectdb";
 	String username = "root";
 	String password = "12345";
 	
@@ -36,6 +36,44 @@ public class MemberDao {
 			pstmt.setString(2, mpw);
 			pstmt.setString(3, mname);
 			pstmt.setString(4, memail);
+			
+			success = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();					
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	
+	return success;
+	}
+	
+	
+	
+public int deleteMember(String mid) { // 회원탈퇴 매소드
+		
+		String sql = "DELETE FROM members WHERE mid=?";
+				
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int success = 0;
+		
+		try {
+			Class.forName(driverName);
+			conn = DriverManager.getConnection(url, username, password);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, mid);
 			
 			success = pstmt.executeUpdate();
 			
