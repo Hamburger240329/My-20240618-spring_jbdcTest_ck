@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import com.ham1142.jdbc.dao.MemberDao;
 
-public class MDeleteCommand {
+public class MDeleteCommand implements MCommand{
 
 	public int execute(Model model) {
 		

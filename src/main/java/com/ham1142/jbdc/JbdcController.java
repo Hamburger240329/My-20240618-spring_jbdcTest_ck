@@ -8,14 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ham1142.command.MCommand;
 import com.ham1142.command.MDeleteCommand;
 import com.ham1142.command.MJoinCommand;
+import com.ham1142.command.MListCommand;
+import com.ham1142.command.MSearchCommand;
 import com.ham1142.jdbc.dao.MemberDao;
 
 @Controller
 public class JbdcController {
+	
+	MCommand command = null;
 	
 	@RequestMapping(value = "/test")
 	public void test() {
@@ -52,8 +58,8 @@ public class JbdcController {
 		
 		model.addAttribute("request",request);
 		
-		MJoinCommand Command = new MJoinCommand();
-		int success = Command.execute(model);
+		command = new MJoinCommand();
+		int success = command.execute(model);
 		
 //		try {
 //		request.setCharacterEncoding("utf-8");
@@ -98,16 +104,46 @@ public class JbdcController {
 		
 		model.addAttribute("request", request);
 		
-		MDeleteCommand Command = new MDeleteCommand();
-		int success = Command.execute(model);
+		command = new MDeleteCommand();
+		int success = command.execute(model);
 		
 		if(success == 1) {//회원 탈퇴 성공
 			
 			model.addAttribute("message", "회원 탈퇴 성공! 안녕히가세요!");
-		} else {
+			
+		} else { // 회원 탈퇴 실패
+			
 			model.addAttribute("message", "회원 탈퇴 실패! 다시확인해 주세요!");
 		}
 		
 		return "deleteOk";
 	}
+	
+	@RequestMapping(value = "/search")
+	public String search() {
+		return "search";
+	}
+	
+	@RequestMapping(value = "/searchOk")
+	public String searchOk(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new MSearchCommand();
+		command.execute(model);
+		
+		return "searchOk";
+	}
+	
+	@RequestMapping (value = "/list")
+	public String list(HttpServletRequest request, Model model) {
+		
+		command = new MListCommand();
+		command.execute(model);
+		
+		return "list";
+		
+	}
+	
+	
 }

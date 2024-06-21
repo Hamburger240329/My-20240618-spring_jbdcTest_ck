@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import com.ham1142.jdbc.dao.MemberDao;
 
-public class MJoinCommand {
+public class MJoinCommand implements MCommand{
 
 	public int execute(Model model) {
 		
@@ -28,4 +28,7 @@ public class MJoinCommand {
 		return success;
 		
 	}
+	
+	
+	
 }
