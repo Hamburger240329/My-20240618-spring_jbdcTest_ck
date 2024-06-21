@@ -14,6 +14,7 @@ import com.ham1142.command.MCommand;
 import com.ham1142.command.MDeleteCommand;
 import com.ham1142.command.MJoinCommand;
 import com.ham1142.command.MListCommand;
+import com.ham1142.command.MModifyCommand;
 import com.ham1142.command.MSearchCommand;
 import com.ham1142.jdbc.dao.MemberDao;
 import com.ham1142.jdbc.dto.MemberDto;
@@ -145,5 +146,23 @@ public class JbdcController {
 		
 	}
 	
+	@RequestMapping (value = "/modifyOk")
+	public String modifyOk(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request",request);
+		
+		command = new MModifyCommand();
+		int success = command.execute(model);
+		
+		if(success == 1) {// 정보 수정 성공
+			
+			command = new MSearchCommand();
+			command.execute(model);
+			
+			return "modifyOk";
+		} else { // 정보 수정 실패 할 경우 -> 다시 회원 아이디 조회 화면으로 이동
+			return "search";
+		}
+	}
 	
 }

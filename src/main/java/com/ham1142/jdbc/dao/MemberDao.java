@@ -207,8 +207,46 @@ public ArrayList<MemberDto> Listmember(){ // 모든 회원리스트 조회 메�
 	}
 
 	return memberDtos;
-
 }
+public int modifyMember(String mname, String memail, String mid) { // 회원가입 매소드
+	
+	String sql = "UPDATE members SET mname=?, memail=? WHERE mid=?";
+			
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	
+	int success = 0;
+	
+	try {
+		Class.forName(driverName);
+		conn = DriverManager.getConnection(url, username, password);
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, mname);
+		pstmt.setString(2, memail);
+		pstmt.setString(3, mid);
+		
+		success = pstmt.executeUpdate(); //sql문 실행->1이 반환되면 성공 아니면 실패
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if(pstmt != null) {
+				pstmt.close();					
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	}
+
+return success;
+}
+
+
 
 }
 	
