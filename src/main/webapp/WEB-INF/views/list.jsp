@@ -22,7 +22,7 @@
 		<c:forEach items="${mDtos }" var="memberDto"> 
 
 		<tr>
-			<td>${memberDto.mid}tiger</td>
+			<td>${memberDto.mid}</td>
 			<td>${memberDto.mpw}</td>
 			<td>${memberDto.mname}</td>
 			<td>${memberDto.memail}</td>
