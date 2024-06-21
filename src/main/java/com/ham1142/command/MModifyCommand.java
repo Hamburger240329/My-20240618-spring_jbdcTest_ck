@@ -24,7 +24,7 @@ public class MModifyCommand implements MCommand {
 		MemberDao memberDao = new MemberDao();
 		int success = memberDao.modifyMember(mname, memail, mid);
 				
-		return 0;
+		return success;
 	}
 
 }
