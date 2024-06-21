@@ -17,7 +17,12 @@
 	이메일 : <input type="text" name="memail" value="${memberDto.memail }"><br><br>
 	가입일 : ${memberDto.mdate }<br><br>
 	<input type="submit" value="수정완료"><br><br>
-	${error }
 	</form>
+	<form action="deleteOk">
+		<input type="hidden" name="mid" value="${memberDto.mid }"><br><br>	
+		<input type="submit" value="회원탈퇴"><br><br>		
+	</form>
+	</form>
+	${error }
 </body>
 </html>

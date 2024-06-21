@@ -163,6 +163,15 @@ public class JbdcController {
 		} else { // 정보 수정 실패 할 경우 -> 다시 회원 아이디 조회 화면으로 이동
 			return "search";
 		}
+	}	
+
+	@RequestMapping (value = "/")
+	public String index() {
+		return "index";
+		
 	}
+	
+	
+	
 	
 }
