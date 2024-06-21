@@ -1,6 +1,5 @@
 package com.ham1142.jbdc;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -17,6 +16,7 @@ import com.ham1142.command.MJoinCommand;
 import com.ham1142.command.MListCommand;
 import com.ham1142.command.MSearchCommand;
 import com.ham1142.jdbc.dao.MemberDao;
+import com.ham1142.jdbc.dto.MemberDto;
 
 @Controller
 public class JbdcController {
