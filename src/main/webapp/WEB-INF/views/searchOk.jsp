@@ -16,12 +16,8 @@
 	이름 : <input type="text" name="mname" value="${memberDto.mname }"><br><br>
 	이메일 : <input type="text" name="memail" value="${memberDto.memail }"><br><br>
 	가입일 : ${memberDto.mdate }<br><br>
-	<input type="submit" value="수정완료"><br><br>
-	</form>
-	<form action="deleteOk">
-		<input type="hidden" name="mid" value="${memberDto.mid }"><br><br>	
-		<input type="submit" value="회원탈퇴"><br><br>		
-	</form>
+	<input type="submit" value="수정완료">
+	<input type="submit" value="회원탈퇴" onclick="javascript:window.location.href='deleteOk?mid=${memberDto.mid }'">		
 	</form>
 	${error }
 </body>
