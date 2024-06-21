@@ -22,7 +22,9 @@
 		<c:forEach items="${mDtos }" var="memberDto"> 
 
 		<tr>
-			<td>${memberDto.mid}</td>
+			<td>
+				<a href="searchOk?mid=${memberDto.mid}">${memberDto.mid}</a>
+			</td>
 			<td>${memberDto.mpw}</td>
 			<td>${memberDto.mname}</td>
 			<td>${memberDto.memail}</td>
